@@ -50,7 +50,7 @@ class admin extends CI_Controller {
 			if($b_check == FALSE){
 				redirect('/admin/login');
 			}
-			$crud = new grocery_CRUD();
+			$crud = new Grocery_crud();
 			$crud->set_theme('datatables');
 			$crud->set_table('news');	
 			$crud->set_field_upload('image','public/images');	
@@ -78,7 +78,7 @@ class admin extends CI_Controller {
 			$this->_example_output($output);
 	}
 	public function type(){
-			$crud = new grocery_CRUD();
+			$crud = new Grocery_crud();
 			$crud->set_theme('datatables');
 			$crud->set_table('types');	
 			$crud->set_relation('category_id','categories','{name}');
@@ -93,7 +93,7 @@ class admin extends CI_Controller {
 
 	}
 	public function user(){
-			$crud = new grocery_CRUD();
+			$crud = new Grocery_crud();
 			$crud->set_theme('datatables');
 			$crud->set_table('users');
 			$crud->set_field_upload('img','public/images');	
