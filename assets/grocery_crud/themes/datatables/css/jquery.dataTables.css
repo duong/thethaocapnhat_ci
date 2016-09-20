@@ -23,7 +23,8 @@ table.dataTable tfoot th {
 }
 
 table.dataTable td {
-	padding: 3px 5px;
+	font-size:12px;
+	padding: 3px 5px 0 5px;
 }
 
 table.dataTable td.center,

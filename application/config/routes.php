@@ -42,6 +42,7 @@ $route['default_controller'] = "player";
 $route['404_override'] = '';
 $route['cau-thu.html'] = "player/index";
 $route['cau-thu/chi-tiet/(:any)-(:num).html'] = "Player/view/$1/$2";
+$route['the-loai/(:num).html'] = "Player/category/$1";
 
 
 /* End of file routes.php */

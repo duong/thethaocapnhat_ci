@@ -4,10 +4,10 @@
     <?php foreach($khac as $value):?>
       <div class="new-box">
         <figure>
-          <a href=""><img src="<?php echo base_url(); ?>public/img/<?php echo $value['image'];?>"/></a>
+          <a href=""><img src="<?php echo base_url(); ?>public/images/<?php echo $value['image'];?>"/></a>
         </figure>
-        <p><span><?php echo $value['modified'];?></span></p>
-        <p><a href="player/view/<?php echo $value['id'];?>"><?php echo $value['title'];?></a></p>
+        <p><span><?php echo $value['created'];?></span></p>
+        <p><a href="<?php echo base_url();?>cau-thu/chi-tiet/<?php echo $value['title-url'];?>-<?php echo $value['id'];?>.html"><?php echo $value['title'];?></a></p>
       </div>
     <?php endforeach;?>
   </div>

@@ -1,3 +1,4 @@
+<div class="col-md-12">
     
       <div class="tqt">
         <div class="mnu">
@@ -27,8 +28,3 @@
             
         </div>
       </div>
-      
-
-    </div>
-  </article>
-</div>

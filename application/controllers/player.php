@@ -42,7 +42,63 @@ Class Player extends CI_Controller{
 		$media = array('videos'=>$video);
 
 		$other = $this->New_model->other();
+		foreach ($other as &$value) {
+		$value['title-url'] = $this->change_string($value['title']);
+		$value['title-url'] = preg_replace('/[^a-zA-Z0-9-\s]/','', $value['title-url']);
+		$value['title-url'] = str_replace(' ', '-',$value['title-url']);
+		
+		}
 		$others = array('khac'=>$other);
+
+
+		$list_view = $this->New_model->listview();
+		foreach ($list_view as &$value) {
+		$value['title-url'] = $this->change_string($value['title']);
+		$value['title-url'] = preg_replace('/[^a-zA-Z0-9-\s]/','', $value['title-url']);
+		$value['title-url'] = str_replace(' ', '-',$value['title-url']);
+		}
+
+		$list_views = array('view'=>$list_view);
+
+		$menu = $this->New_model->menu();
+		$datatitle = array('mains'=>$menu);
+		//print_r($main);die;
+
+		$cate_video = $this->New_model->video();
+		
+
+		foreach ($cate_video as &$value) {
+				# code...
+				$value['title-url'] = $this->change_string($value['title']);
+				$value['title-url'] = preg_replace('/[^a-zA-Z0-9-\s]/','', $value['title-url']);
+				$value['title-url'] = str_replace(' ', '-',$value['title-url']);
+
+		}
+		$v = array_shift($cate_video);
+		//print_r($v);die;
+		$cate_data = array(
+			'd_data'=>$cate_video,
+			'first_roat'=>$v
+			);
+		//print_r($cate_data);die;
+		$cate_photo = $this->New_model->photo();
+		
+
+		foreach ($cate_photo as &$value) {
+				# code...
+				$value['title-url'] = $this->change_string($value['title']);
+				$value['title-url'] = preg_replace('/[^a-zA-Z0-9-\s]/','', $value['title-url']);
+				$value['title-url'] = str_replace(' ', '-',$value['title-url']);
+
+		}
+		$p_data = array_shift($cate_photo);
+		//print_r($v);die;
+		$photo_data = array(
+			'p_data'=>$cate_photo,
+			'img_row'=>$p_data
+			);
+
+
 
 		$datatitle['page_title'] = 'The thao cap nhat';
 		$this->load->view('teamplate/header',$datatitle);
@@ -50,23 +106,70 @@ Class Player extends CI_Controller{
 		$this->load->view('player/other',$others);
 		$this->load->view('player/photo',$img);
 		$this->load->view('player/video',$media);
-		$this->load->view('teamplate/content');
-		$this->load->view('teamplate/right');
+		$this->load->view('teamplate/catevideo',$cate_data);
+		$this->load->view('teamplate/chuyennhuong',$photo_data);
+		$this->load->view('teamplate/content',$cate_data);
+		$this->load->view('teamplate/right',$list_views);
 		$this->load->view('teamplate/footer');
 	}
 	public function view($title,$id){			
-
-		$this->load->model('New_model');
-		$v_data = $this->New_model->getdata($id);		
 		
+		$this->load->model('New_model');
+		$v_data = $this->New_model->getdata($id);	
+		$this->New_model->total_view($id);
 		$dataview = array(
 			'value'=>$v_data
 			);
 		//print_r($dataview);die;
+
+		$list_view = $this->New_model->listview();
+		foreach ($list_view as &$value) {
+		$value['title-url'] = $this->change_string($value['title']);
+		$value['title-url'] = preg_replace('/[^a-zA-Z0-9-\s]/','', $value['title-url']);
+		$value['title-url'] = str_replace(' ', '-',$value['title-url']);
+		}
+
+		$list_views = array('view'=>$list_view);
+
+		$menu = $this->New_model->menu();
+		$datatitle = array('mains'=>$menu);
 		$datatitle['page_title'] = 'The thao cap nhat- detail';
-		$this->load->view('teamplate/header',$datatitle);
+
+		$this->load->view('teamplate/header',$datatitle,$dataview);
 		$this->load->view('player/view',$dataview);
-		$this->load->view('teamplate/right');
+		$this->load->view('teamplate/right',$list_views);
+		$this->load->view('teamplate/footer');
+	}
+	public function category($id){
+		
+		$this->load->model('New_model');
+		$view_cate = $this->New_model->getview($id);
+		foreach ($view_cate as &$value) {
+		$value['title-url'] = $this->change_string($value['title']);
+		$value['title-url'] = preg_replace('/[^a-zA-Z0-9-\s]/','', $value['title-url']);
+		$value['title-url'] = str_replace(' ', '-',$value['title-url']);
+		}
+		
+		
+		$data = array(
+			'c_data'=>$view_cate,
+			);
+
+		$list_view = $this->New_model->listview();
+		foreach ($list_view as &$value) {
+		$value['title-url'] = $this->change_string($value['title']);
+		$value['title-url'] = preg_replace('/[^a-zA-Z0-9-\s]/','', $value['title-url']);
+		$value['title-url'] = str_replace(' ', '-',$value['title-url']);
+		}
+
+		$list_views = array('view'=>$list_view);
+
+		$menu = $this->New_model->menu();
+		$datatitle = array('mains'=>$menu);
+		$datatitle['page_title'] = 'The thao cap nhat';
+		$this->load->view('teamplate/header',$datatitle);
+		$this->load->view('player/category',$data);
+		$this->load->view('teamplate/right',$list_views);
 		$this->load->view('teamplate/footer');
 	}
 	function change_string($str) {

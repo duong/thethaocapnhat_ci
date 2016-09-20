@@ -44,19 +44,22 @@ class admin extends CI_Controller {
 	// }
 
 	public function index()
-	{
+	{		
 			$b_check = $this->session->userdata('logged_in');
 		
 			if($b_check == FALSE){
-				redirect('/admin/login');
+				redirect(base_url('/admin/login'));
 			}
-			$crud = new Grocery_crud();
+			$crud = new grocery_CRUD();
 			$crud->set_theme('datatables');
 			$crud->set_table('news');	
 			$crud->set_field_upload('image','public/images');	
 			$crud->set_relation('category_id','categories','{name}');
 			$crud->set_relation('type_id','types','{name}');
 			$crud->display_as('category_id','the loai');
+			$crud->display_as('viewed','view');
+			$crud->display_as('created','date');
+			$crud->display_as('modified','update');
 			$crud->display_as('type_id','kiểu');
 			$crud->required_fields('title','description','content','author');	
 			$output = $crud->render();						
@@ -118,7 +121,7 @@ class admin extends CI_Controller {
 
                );
 				$this->session->set_userdata($newdata);
-				redirect('/admin/index');
+				redirect(base_url('/admin/index'));
 			
 			}else{
 				?>

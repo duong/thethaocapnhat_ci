@@ -1,17 +1,16 @@
-    
-      <div class="tqt">
+<div class="tqt">
         <div class="mnu">
-          <h4>video</h4>
+          <h4>Photo News</h4>
           <div class="new-box-tqt">
             <figure>
-              <a href=""><img src="<?php echo base_url(); ?>public/images/<?php echo $first_roat['image'];?>"/></a>
+              <a href=""><img src="<?php echo base_url(); ?>public/images/<?php echo $img_row['image'];?>"/></a>
             </figure>
-            <a href=""><?php echo $first_roat['title'];?></a>
-            <p><?php echo $first_roat['description'];?></p>
+            <a href=""><?php echo $img_row['title'];?></a>
+            <p><?php echo $img_row['description'];?></p>
           </div>
           <?php
 
-        foreach ($d_data as $value) {?>
+        foreach ($p_data as $value) {?>
             <div class="new-box-tqt-dt">
               <div class="new-box-dt">
                 <figure>
@@ -27,8 +26,3 @@
             
         </div>
       </div>
-      
-
-    </div>
-  </article>
-</div>
