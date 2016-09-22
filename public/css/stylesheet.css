@@ -26,8 +26,7 @@
 	margin: 0 10px 10px 0;
 }
 #img-new img{
-	width: -moz-min-content(100%);
-  	width: -webkit-max-content(440px);
+	width: 430px;
 	height:280px;
 }
 #main .col-sm-5{
