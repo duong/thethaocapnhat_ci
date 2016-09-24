@@ -25,6 +25,7 @@ Class New_model extends CI_Model{
 		$this->db->select('news.id, title,image,description,news.created,name');
 		$this->db->limit(20);
 		$this->db->join('categories', 'news.category_id = categories.id');
+		$this->db->order_by('created','desc');
 		$sql = $this->db->get_where('news',array('category_id' => $id));
 		return $sql->result_array();
 	}
