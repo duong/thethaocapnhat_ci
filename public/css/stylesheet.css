@@ -25,10 +25,13 @@
 	float: left;
 	margin: 0 10px 10px 0;
 }
+
 #img-new img{
 	width: 430px;
 	height:280px;
 }
+ @-moz-document url-prefix() {
+#img-new img {width: 100%;}}
 #main .col-sm-5{
 	height: 400px;
 	padding: 0;
